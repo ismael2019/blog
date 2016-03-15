@@ -40,7 +40,7 @@ use Cake\Routing\Router;
  * `:action` markers.
  *
  */
-Router::connect('/', ['controller' => 'Articles', 'action' => 'index']);
+
 Router::defaultRouteClass('DashedRoute');
 
 Router::scope('/', function (RouteBuilder $routes) {
