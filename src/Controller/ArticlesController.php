@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use Cake\Network\Exception\NotFoundException;
 
 class ArticlesController extends AppController
 {
@@ -14,6 +15,7 @@ class ArticlesController extends AppController
         $article = $this->Articles->get($id);
         $this->set(compact('article'));
     }
+    
     public function add()
     {
         $article = $this->Articles->newEntity();
@@ -26,6 +28,11 @@ class ArticlesController extends AppController
             $this->Flash->error(__('Unable to add your article.'));
         }
         $this->set('article', $article);
+
+        // Just added the categories list to be able to choose
+        // one category for an article
+        $categories = $this->Articles->Categories->find('treeList');
+        $this->set(compact('categories'));
     }
     public function edit($id = null)
 	{
